@@ -1,0 +1,265 @@
+#include <avr/io.h>
+#include <stdio.h>
+#include <util/delay.h>
+#include <math.h>
+
+//FREKVENCE = 1/T * 1000
+//Bod Sinusu = Amplituda/2 * sin(2PI * frekvence * krok(cas) + posun) + Amplituda/2 (+ amplituda jelikoz by to vychazelo v minusu, /2 obe amplitudy jelikoz by to vychazelo 2x nastavene amplitude)
+//255 => +- 4,3V
+//210 => 4V (Nami urcena maximalni amplituda!)
+//1 => +- 0,0190V
+
+//PROMENE PRO KROKOVANI SINUSOVEHO SIGNALU
+int kroksinch1; //Krok sinusu na kanale 1
+int kroksinch2; //Krok sinusu na kanale 2
+int sinusch2; //Jeden bod sinusoveho signalu na kanale 1
+int sinusch1; //Jeden bod sinusoveho signalu na kanale 2
+
+//POMOCNE PROMENNE
+double cisloch1; //Cislo ktere zapisujeme na PORTB (kanal 1)
+double cisloch2; //cislo ktere zapisujeme na PORTD (kanal 2)
+double maxch1; //max vychylka kde muze PORTB jit tak aby nesel do saturace(4V)
+double maxch2; //max vychylka kde muze PORTD jit tak aby nesel do saturace(4V)
+double cekanich1 = 0; //hodnota pro cekani mezi 0 a amplitudou pri obdelnikovym signalu (kanal 1)
+double cekanich2 = 0; //hodnota pro cekani mezi 0 a amplitudou pri obdelnikovym signalu (kanal 2)
+
+//PROMENNE URCENE PRO PREVOD
+int bitposunch1; //bitovy posun kanalu 1
+int bitposunch2; //bitovy posun kanalu 2
+int amplitudabitch1; //amplituda ch1 v bitovym cisle
+int amplitudabitch2; //amplituda ch2 v bitovym cisle
+double frekvencemsch1; //Frekvence ch1 v ms
+double frekvencemsch2; //Frekvence ch2 v ms
+double p1; //Promenna pro krok trojuhelniku a pily na kanalu 1
+double p2; //Promenna pro krok trojuhelniku a pily na kanalu 2
+
+
+//NASTAVENI POSUNU, AMPLITUDY A FREKVENCE
+double posunch1 = 0; //(NAPETI!, MAX 4V) hodnota díky které mùžeme posunout zaèátek signálu kanálu 1
+double amplitudach1 = 1; //(NAPETI!, MAX 4V) hodnota díky které mùžeme mìnit amplitudu na kanálu 1
+double frekvencech1 = 10; //(V HZ!, MAX 100Hz) hodnota díky které mùžeme mìnit frekvenci na kanálu 1
+
+double posunch2 = 0; //(NAPETI!, MAX 4V) hodnota díky které mùžeme posunout zaèátek signálu kanálu 2
+double amplitudach2 = 2; //(NAPETI!, MAX 4V) hodnota díky které mùžeme mìnit amplitudu na kanálu 2
+double frekvencech2 = 20; //(V HZ!, MAX 100Hz) hodnota díky které mùžeme mìnit frekvenci na kanálu 2
+
+void nastaveniportu()
+{
+	DDRB = 0xFF; //Kanal 1, vystup (aby jsme mohli zapisovat)
+	DDRD = 0xFF; //Kanal 2, vystup (aby jsme mohli zapisovat)
+}
+
+static void nastavenifrekvence() //Prevedeni frekvence z hz na milisekundy + zkontrolovani maximalni hodnoty
+{
+	if (frekvencech1 > 100) //Kdyz je nastavena vetsi frekvence nez maximum automaticky se nastavi na maximum (100Hz)
+	{
+		frekvencech1 = 100;
+	}
+	else if (frekvencech2 > 100) 
+	{
+		frekvencech2 = 100;
+	}
+    frekvencemsch1 = 1 / frekvencech1 * 500; //*500 Protoze chceme 1/2 cyklu
+    frekvencemsch2 = 1 / frekvencech2 * 500; //*500 Protoze chceme 1/2 cyklu
+}
+
+static void nastaveniamplitudy() //Prevedeni amplitudy z napeti na bitove slovo + zkontrolovani maximalni hodnoty
+{
+    amplitudabitch1 = (int) (amplitudach1 / 0.019); // #include <math.h> then round(cislo)
+    amplitudabitch2 = (int) (amplitudach2 / 0.019); // int amplitudabitch2 = (int) amplitudach2
+
+    if (amplitudabitch1 > 210) //Kdyz je nastavena vetsi amplituda nez maximum (210/4V) tak se automaticky nastavi na 4V
+    {
+        amplitudabitch1 = 210;
+    }
+    if (amplitudabitch2 > 210)
+    {
+        amplitudabitch2 = 210;
+    }
+
+    maxch1 = amplitudabitch1;
+    maxch2 = amplitudabitch2;
+}
+
+static void nastaveniposunu() //Prevedeni posunu z napìtí na bitové slovo + zkontrolování maximální hodnoty
+{
+    bitposunch1 = (int)(posunch1 / 0.019);
+    bitposunch2 = (int)(posunch2 / 0.019);
+	if (bitposunch1 > 210) //Kdyz je nastaveny posun vetsi nez maximum tak se automaticky nastavi maximum (210/4V)
+    {
+        bitposunch1 = 210;
+    }
+    if (bitposunch2 > 210)
+    {
+        bitposunch2 = 210;
+    }
+    cisloch1 = bitposunch1; //nastaveni bitoveho posunu na cisloch1 (tak aby tam signal na kanale 1 zacinal)
+    cisloch2 = bitposunch2; //nastaveni bitoveho posunu na cisloch2 (tak aby tam signal na kanale 2 zacinal)
+}
+
+static void nastavenikroku()
+{
+    p1 = (amplitudabitch1 / frekvencemsch1) / 2; //Krokovani troj. signalu a pily (/2 aby bylo vice kroku pro vetsi frekvence)
+    p2 = (amplitudabitch2 / frekvencemsch2) / 2; //Krokovani troj. signalu a pily (/2 aby bylo vice kroku pro vetsi frekvence)
+}
+
+static void zapsaniobdel(int kanal)
+{
+    switch (kanal)
+        {
+            case 1: //kanal 1
+                if (cisloch1 > 0 && cisloch1 < amplitudabitch1)
+                    cisloch1 = 0;
+                if (cekanich1 >= frekvencemsch1 && cisloch1 == amplitudabitch1)
+                { //kdyz je obdelnik. signal v "1" a pockal po dobu frekvence tak se zresetuje
+                    cisloch1 = 0;
+                    cekanich1 = 0;
+                }
+                else if (cekanich1 >= frekvencemsch1) //kdyz je obdelnik. signal v "0" a pockal po dobu frekvence tak se da do "1"
+                {
+                    cisloch1 = amplitudabitch1;
+                    cekanich1 = 0;
+                }
+                else
+                {
+                    PORTB = cisloch1;
+                    cekanich1++;
+                        
+                }
+                break;
+            case 2: //kanal 2
+                if (cisloch2 > 0 && cisloch2 < amplitudabitch2)
+                    cisloch2 = 0;
+                if (cekanich2 == frekvencemsch2 && cisloch2 == amplitudabitch2)
+                { //kdyz je obdelnik. signal v "1" a pockal po dobu frekvence tak se zresetuje
+                    cisloch2 = 0;
+                    cekanich2 = 0;
+                }
+                else if (cekanich2 == frekvencemsch2) //kdyz je obdelnik. signal v "0" a pockal po dobu frekvence tak se da do "1"
+                {
+                    cisloch2 = amplitudabitch2;
+                    cekanich2 = 0;
+                }
+                else
+                {
+                    PORTD = cisloch2;
+                    cekanich2++;
+                }
+                break;
+        }
+}
+
+static void zapsanitroj(int kanal)
+{
+    switch (kanal)
+        {
+            case 1: //kanal 1
+
+                if (cisloch1 >= amplitudabitch1) //kdyz trojuhelnik je v max. hodnote amplitudy tak maxch1 pojede dolu a zapisujeme maxch1
+                {
+					PORTB = maxch1;
+                    maxch1 = maxch1 - p1;
+                    if (maxch1 <= 0) //kdyz je maxch1 v nule a cisloch2 maximum tak se zresetuje
+                    {
+                        maxch1 = amplitudabitch1;
+                        cisloch1 = 0;
+						PORTB = cisloch1;
+                    }
+                }
+                else
+                {
+                    PORTB = cisloch1;
+                    cisloch1 = cisloch1 + p1;
+                }
+                break;
+            case 2: //kanal 2
+                if (cisloch2 >= amplitudabitch2) //kdyz trojuhelnik je v max. hodnote amplitudy tak maxch2 pojede dolu a zapisujeme maxch2
+                {
+					PORTD = maxch2;
+                    maxch2 = maxch2 - p2;
+                    if (maxch2 <= 0) //kdyz je maxch2 v nule a cisloch2 maximum tak se zresetuje
+                    {
+                        maxch2 = amplitudabitch2;
+                        cisloch2 = 0;
+						PORTD = cisloch2;
+                    }
+                }
+                else
+                {
+                    PORTD = cisloch2;
+                    cisloch2 = cisloch2 + p2;
+                }
+                break;
+        }
+}
+
+static void zapsanipila(int kanal)
+{
+    switch (kanal)
+        {
+            case 1: //kanal 1
+
+                PORTB = cisloch1;
+                cisloch1 = cisloch1 + p1/2; //Krok je /2 jelikoz signal pily je 2x kratsi
+                if (cisloch1 >= amplitudabitch1)
+                {//kdyz je cisloch1 v max. amplitude zmeni se na 0
+                    cisloch1 = 0;
+                }
+                break;
+            case 2: //kanal 2
+                PORTD = cisloch2;
+                cisloch2 = cisloch2 + p2/2; //Krok je /2 jelikoz signal pily je 2x kratsi
+                if (cisloch2 >= amplitudabitch2)
+                { //kdyz je cisloch2 v max. amplitude zmeni se na 0
+                    cisloch2 = 0;
+                }
+                break;
+        }
+}
+
+static void zapsanisin(int kanal)
+{
+    switch(kanal)
+        {
+            case 1: //kanal 1
+                kroksinch1++; //krok
+                sinusch1 = (int) (amplitudabitch1/2 * sin(6.28 * frekvencech1 * kroksinch1 + posunch1) + amplitudabitch1/2);
+				if (kroksinch1 == frekvencemsch1*4)
+					kroksinch1 = 0; //po 4 vykresleni sinusovky se krok vynuluje aby se krok nebyl moc velký
+                PORTB = sinusch1;
+				break;
+
+            case 2: //kanal 2
+				kroksinch2++; //krok
+				sinusch2 = (int) (amplitudabitch2/2 * sin(6.28 * frekvencech2 * kroksinch2 + posunch2) + amplitudabitch2/2);
+				if (kroksinch1 == frekvencemsch1*4) 
+					kroksinch1 = 0; //po 4 vykresleni sinusovky se krok vynuluje aby se krok nebyl moc velký
+				PORTD = sinusch2;
+                break;
+        }
+ }
+ 
+ int main (void) {
+	nastaveniportu();
+	nastavenifrekvence();
+	nastaveniamplitudy();
+	nastaveniposunu();
+	nastavenikroku();
+	while (1) {
+		_delay_ms(1); //Delay pred kazdym krokem 1ms
+		
+		//KANAL 1
+		
+		//zapsaniobdel(1);
+		//zapsanitroj(1);
+		//zapsanipila(1);
+		zapsanisin(1);
+		
+		//KANAL 2
+		
+		zapsaniobdel(2);
+		//zapsanitroj(2);
+		//zapsanipila(2);
+		//zapsanisin(2);
+	}
+}
