@@ -1,0 +1,9 @@
+C:\Users\Jirka\Desktop\Metrix\bin\Debug\Metrix.exe.config
+C:\Users\Jirka\Desktop\Metrix\bin\Debug\Metrix.exe
+C:\Users\Jirka\Desktop\Metrix\bin\Debug\Metrix.pdb
+C:\Users\Jirka\Desktop\Metrix\obj\Debug\Metrix.csprojAssemblyReference.cache
+C:\Users\Jirka\Desktop\Metrix\obj\Debug\Metrix.Properties.Resources.resources
+C:\Users\Jirka\Desktop\Metrix\obj\Debug\Metrix.csproj.GenerateResource.cache
+C:\Users\Jirka\Desktop\Metrix\obj\Debug\Metrix.exe
+C:\Users\Jirka\Desktop\Metrix\obj\Debug\Metrix.pdb
+C:\Users\Jirka\Desktop\Metrix\obj\Debug\Metrix.Matrix.resources

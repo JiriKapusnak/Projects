@@ -1,0 +1,10 @@
+C:\Users\pm3\Desktop\HornerovoSchema\bin\Debug\HornerovoSchema.exe.config
+C:\Users\pm3\Desktop\HornerovoSchema\bin\Debug\HornerovoSchema.exe
+C:\Users\pm3\Desktop\HornerovoSchema\bin\Debug\HornerovoSchema.pdb
+C:\Users\pm3\Desktop\HornerovoSchema\obj\Debug\HornerovoSchema.csprojAssemblyReference.cache
+C:\Users\pm3\Desktop\HornerovoSchema\obj\Debug\HornerovoSchema.HornerovoSchema.resources
+C:\Users\pm3\Desktop\HornerovoSchema\obj\Debug\HornerovoSchema.Properties.Resources.resources
+C:\Users\pm3\Desktop\HornerovoSchema\obj\Debug\HornerovoSchema.csproj.GenerateResource.cache
+C:\Users\pm3\Desktop\HornerovoSchema\obj\Debug\HornerovoSchema.csproj.CoreCompileInputs.cache
+C:\Users\pm3\Desktop\HornerovoSchema\obj\Debug\HornerovoSchema.exe
+C:\Users\pm3\Desktop\HornerovoSchema\obj\Debug\HornerovoSchema.pdb
