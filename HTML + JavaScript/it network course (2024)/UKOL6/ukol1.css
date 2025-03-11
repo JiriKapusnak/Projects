@@ -1,0 +1,28 @@
+.pavucinavlevo1 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.pavucinavlevo2 {
+    position: absolute;
+    left: 0px;
+    top: 140px;
+}
+
+.pavucinavpravo1 {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.pavucinavpravo2 {
+    position: absolute;
+    right: 0px;
+    top: 140px;
+}
+
+article header h1 {
+    color: orange;
+    text-align: center;
+}

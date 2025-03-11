@@ -1,0 +1,35 @@
+.purple {
+    background-color: #530156; 
+}
+
+.blue {
+    background-color: blue;
+}
+
+.azure {
+    background-color: #02FBFD;
+}
+
+.green {
+    background-color: #4FFF00;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.orange {
+    background-color: #FF7F00;
+}
+
+.red {
+    background-color: red;
+}
+
+.wine {
+    background-color: #540000;
+}
+
+.purple, .wine {
+    color: white;
+}

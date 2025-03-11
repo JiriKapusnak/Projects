@@ -1,0 +1,29 @@
+.karta {
+    margin: 50px;
+    padding: 0px 15px;
+    width: 200px;
+    border: 1px solid #000000;
+    font-size: 18px;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.leva {
+    text-align: left;
+}
+
+.prava {
+    text-align: right;
+}
+
+.stred {
+    text-align: center;
+    margin: 1em;
+    font-size: 70px;
+}

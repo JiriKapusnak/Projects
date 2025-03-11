@@ -1,0 +1,68 @@
+.sluzba-header {
+    margin-top: 100px;
+    background-color: #f8f8f9;
+}
+
+.sluzba-header h2 {
+    text-align: left;
+    padding-left: 20px;
+    color: rgb(134, 87, 0);
+    font-size: 30px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.sluzba-header p {
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 10px;
+    font-size: 14px;
+    color: gray;
+    font-family: 'Kanit', sans-serif;
+}
+
+.javascript-image-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adjust the gap according to your preference */
+}
+
+.javascript-image-item img {
+    width: 250px;
+    height: auto; /* To maintain aspect ratio */
+}
+
+@media screen and (min-width: 700px) {
+    .sluzba-header h2 {
+        text-align: center;
+        padding-left: 0;
+    }
+
+    .sluzba-header p {
+        padding-left: 200px;
+        padding-right: 200px;
+        text-align: center;
+    }
+
+    .javascript-image-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .javascript-image-item {
+        width: calc(50% - 10px); /* Adjusted width to account for gap */
+        text-align: center;
+    }
+
+    .javascript-image-item img {
+        width: 80%; /* Set image width to fill its container */
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .sluzba header p {
+        padding-left: 500px;
+        padding-right: 500px;
+        text-align: center;
+    }
+}

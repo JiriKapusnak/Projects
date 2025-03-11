@@ -1,0 +1,236 @@
+﻿<Window x:Class="SimpleTicTacToe.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleTicTacToe"
+        mc:Ignorable="d"
+        Title="Menu" Height="600" Width="800">
+    <Grid Background="#192a32">
+        <!-- BIG RECTANGLE IN WHICH I MANUALLY PUT EVERYTHING I WANT -->
+        <Rectangle x:Name="MainRectangle" HorizontalAlignment="Center" Height="500" Width="500" VerticalAlignment="Center"  RadiusX="25" RadiusY="25" Fill="#1f3540">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#10212b" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+            </Rectangle.Effect>
+        </Rectangle>
+
+        <!-- WELCOME TEXT -->
+        <TextBlock FontSize="30" FontWeight="UltraBold" Margin="0,66,0,0" TextAlignment="Center">
+            <Run Text="WELCOME TO MY" Foreground="Black"/>
+            <LineBreak/>
+            <Run Text="TIC " Foreground="#f5b133"/>
+            <Run Text="TAC " Foreground="#a8bec9"/>
+            <Run Text="TOE" Foreground="#31c4be"/>
+        </TextBlock>
+
+        <!-- CHALLENGE A FRIEND BUTTON -->
+        <Button x:Name="challengeFriendButton" Content="Challenge a Friend" Foreground="#f5b133" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="60" Margin="0,280,0,0" Click="challengeFriendButton_Click">
+            <!-- Set Background color to match Rectangle fill -->
+            <Button.Background>
+                <SolidColorBrush Color="#1f3540"/>
+            </Button.Background>
+
+            <!-- Set Corner Radius to match Rectangle's radius -->
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Rectangle x:Name="challengeFriendButtonVisualizer" RadiusX="10" RadiusY="10" Fill="#1f3540" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Rectangle.Effect>
+                                <!-- DropShadow effect to match Rectangle -->
+                                <DropShadowEffect Color="#2a4450" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+                            </Rectangle.Effect>
+                        </Rectangle>
+
+                        <!-- Apply text properties to the ContentPresenter -->
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <ContentPresenter.Resources>
+                                <!-- Styling for the text inside the button -->
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="15"/>
+                                    <Setter Property="FontWeight" Value="DemiBold"/>
+                                    <Setter Property="TextAlignment" Value="Center"/>
+                                </Style>
+                            </ContentPresenter.Resources>
+                        </ContentPresenter>
+
+                        <!-- Define Visual States -->
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <!-- Normal State (default state) -->
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="challengeFriendButtonVisualizer" Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)" To="#2a4450" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+
+                                <!-- Pressed State (when the button is clicked) -->
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="challengeFriendButtonVisualizer" Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)" To="#1c3c47" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+
+                                <!-- MouseOver State (when the button is hovered) -->
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="challengeFriendButtonVisualizer" Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)" To="#3d7588" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <!-- FACE THE MACHINE BUTTON -->
+        <Button x:Name="faceTheMachineButton" Content="Face the machine" Foreground="#31c4be" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="60" Margin="0,360,0,0" Click="faceTheMachineButton_Click">
+            <!-- Set Background color to match Rectangle fill -->
+            <Button.Background>
+                <SolidColorBrush Color="#1f3540"/>
+            </Button.Background>
+
+            <!-- Set Corner Radius to match Rectangle's radius -->
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Rectangle x:Name="faceTheMachineVisualizer" RadiusX="10" RadiusY="10" Fill="#1f3540" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Rectangle.Effect>
+                                <!-- DropShadow effect to match Rectangle -->
+                                <DropShadowEffect Color="#2a4450" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+                            </Rectangle.Effect>
+                        </Rectangle>
+
+                        <!-- Apply text properties to the ContentPresenter -->
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <ContentPresenter.Resources>
+                                <!-- Styling for the text inside the button -->
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="15"/>
+                                    <Setter Property="FontWeight" Value="DemiBold"/>
+                                    <Setter Property="TextAlignment" Value="Center"/>
+                                </Style>
+                            </ContentPresenter.Resources>
+                        </ContentPresenter>
+
+                        <!-- Define Visual States -->
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <!-- Normal State (default state) -->
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="faceTheMachineVisualizer" Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)" To="#2a4450" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+
+                                <!-- Pressed State (when the button is clicked) -->
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="faceTheMachineVisualizer" Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)" To="#1c3c47" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+
+                                <!-- MouseOver State (when the button is hovered) -->
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="faceTheMachineVisualizer" Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)" To="#3d7588" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <!-- CREDITS BUTTON -->
+        <Button x:Name="creditsButton" Content="Credits" Foreground="#a8bec9" HorizontalAlignment="Center" VerticalAlignment="Top" Width="150" Height="60" Margin="0,440,0,0" Click="creditsButton_Click">
+            <!-- Set Background color to match Rectangle fill -->
+            <Button.Background>
+                <SolidColorBrush Color="#1f3540"/>
+            </Button.Background>
+
+            <!-- Set Corner Radius to match Rectangle's radius -->
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Rectangle x:Name="creditsButtonVisualizer" RadiusX="10" RadiusY="10" Fill="#1f3540" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Rectangle.Effect>
+                                <!-- DropShadow effect to match Rectangle -->
+                                <DropShadowEffect Color="#2a4450" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+                            </Rectangle.Effect>
+                        </Rectangle>
+
+                        <!-- Apply text properties to the ContentPresenter -->
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <ContentPresenter.Resources>
+                                <!-- Styling for the text inside the button -->
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="15"/>
+                                    <Setter Property="FontWeight" Value="DemiBold"/>
+                                    <Setter Property="TextAlignment" Value="Center"/>
+                                </Style>
+                            </ContentPresenter.Resources>
+                        </ContentPresenter>
+
+                        <!-- Define Visual States -->
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <!-- Normal State (default state) -->
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="creditsButtonVisualizer" Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)" To="#2a4450" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+
+                                <!-- Pressed State (when the button is clicked) -->
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="creditsButtonVisualizer" Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)" To="#1c3c47" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+
+                                <!-- MouseOver State (when the button is hovered) -->
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="creditsButtonVisualizer" Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)" To="#3d7588" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <!-- CREDITS GRID -->
+        <Grid x:Name="gridCreditsContainer" Panel.ZIndex="99" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" MouseDown="Grid_MouseDown">
+            <!-- Rectangle Background -->
+            <Rectangle HorizontalAlignment="Left" Height="250" Width="400" VerticalAlignment="Center" RadiusX="10" RadiusY="10" Fill="#304d5b" Margin="10,0,0,0">
+                <Rectangle.Effect>
+                    <DropShadowEffect Color="#10212b" Direction="270" ShadowDepth="3" BlurRadius="0"/>
+                </Rectangle.Effect>
+            </Rectangle>
+
+            <!-- ABOUT THE PROJECT TEXTBLOCK -->
+            <TextBlock FontSize="18" FontWeight="UltraBold" HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Left" Width="380"  TextWrapping="Wrap" Margin="20,0,0,0">
+                <TextBlock.Inlines>
+                    <LineBreak/>
+                    <Run Text="Developer: " Foreground="#f5b133"/>
+                    <Run Text="Jiri Kapusnak" Foreground="#31c4be"/>
+                    <LineBreak/>
+
+                    <Run Text="Project: " Foreground="#f5b133"/>
+                    <Run Text="Tic Tac Toe (WPF Edition)" Foreground="#31c4be"/>
+                    <LineBreak/>
+                    <LineBreak/>
+
+                    <Run FontSize="14" FontWeight="Medium" Foreground="#a8bec9" Text="To be honest, I created this game simply because I wanted to experiment with importing AI into a project and not just using it for chat. At the same time, I wanted to give a try to Windows Presentation Foundation (WPF) and see what I could build with it."/>
+                </TextBlock.Inlines>
+            </TextBlock>
+
+            <!-- JUST A REMINDER XD (I KNOW TOO MANY COMMENTS BUT I LIKE THEM OK) -->
+            <TextBlock Text="PS: you can click anywhere in the box to close" FontSize="10" FontWeight="Thin" HorizontalAlignment="Center" VerticalAlignment="Bottom" TextAlignment="Center" Width="380" TextWrapping="Wrap"/>
+        </Grid>
+    </Grid>
+</Window>

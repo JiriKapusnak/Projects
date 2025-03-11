@@ -1,0 +1,42 @@
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\bin\Debug\net7.0-windows\SimpleTicTacToe.exe
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\bin\Debug\net7.0-windows\SimpleTicTacToe.deps.json
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\bin\Debug\net7.0-windows\SimpleTicTacToe.runtimeconfig.json
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\bin\Debug\net7.0-windows\SimpleTicTacToe.dll
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\bin\Debug\net7.0-windows\SimpleTicTacToe.pdb
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\MainWindow.g.cs
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\App.g.cs
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe_MarkupCompile.cache
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe_MarkupCompile.lref
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\MainWindow.baml
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.g.resources
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.AssemblyInfoInputs.cache
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.AssemblyInfo.cs
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.csproj.CoreCompileInputs.cache
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.dll
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\refint\SimpleTicTacToe.dll
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.pdb
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.genruntimeconfig.cache
+C:\Users\jiri.kapusnak\Desktop\MY C# PROJECTS\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\ref\SimpleTicTacToe.dll
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\bin\Debug\net7.0-windows\SimpleTicTacToe.exe
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\bin\Debug\net7.0-windows\SimpleTicTacToe.deps.json
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\bin\Debug\net7.0-windows\SimpleTicTacToe.runtimeconfig.json
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\bin\Debug\net7.0-windows\SimpleTicTacToe.dll
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\bin\Debug\net7.0-windows\SimpleTicTacToe.pdb
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\MainWindow.g.cs
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\App.g.cs
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe_MarkupCompile.cache
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe_MarkupCompile.lref
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\MainWindow.baml
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.g.resources
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.AssemblyInfoInputs.cache
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.AssemblyInfo.cs
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.csproj.CoreCompileInputs.cache
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.dll
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\refint\SimpleTicTacToe.dll
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.pdb
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\SimpleTicTacToe.genruntimeconfig.cache
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\ref\SimpleTicTacToe.dll
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\Menu.g.cs
+C:\Users\jirka\Desktop\My Projects\PROJECT02 - WPF\SimpleTicTacToe\SimpleTicTacToe\obj\Debug\net7.0-windows\Menu.baml

@@ -1,0 +1,182 @@
+﻿<Window x:Class="SimpleTicTacToe.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleTicTacToe"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid Background="#192a32">
+        <!-- INFORMATION -->
+        <Image Source="images/circlesmall.png" Margin="232,48,518,484"/>
+        <Image Source="images/crosssmall.png" Margin="266,48,484,484"/>
+        <Rectangle x:Name="GridTurn" HorizontalAlignment="Left" Height="35" Width="100" Margin="352,44,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#2f5061">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#10212b" Direction="270" ShadowDepth="3" BlurRadius="0"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <TextBlock x:Name="WhichTurnText" Text="X" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left" TextAlignment="Center" Margin="358,47,0,0" FontWeight="UltraBold" FontSize="20" Foreground="#a7bfca"/>
+        <TextBlock Text="TURN" Width="40" VerticalAlignment="Top" HorizontalAlignment="Left" TextAlignment="Center" Margin="393,54,0,0" FontWeight="DemiBold" Foreground="#a7bfca"/>
+
+        <Rectangle x:Name="GridRestart" HorizontalAlignment="Left" Height="35" Width="35" Margin="537,44,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#a8bec9">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#6f8a96" Direction="270" ShadowDepth="3" BlurRadius="0"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <TextBlock x:Name="restartTextBlock" Text="⟲" Width="35" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Left" TextAlignment="Center" FontSize="20" FontWeight="DemiBold" Margin="537,45,0,0" Height="35" MouseLeftButtonDown="OnClickRestartButton"/>
+
+        <Grid x:Name="gridGameDoneContainer" Panel.ZIndex="99" Visibility="Collapsed" Margin="332,193,291,145">
+            <!-- Rectangle Background -->
+            <Rectangle HorizontalAlignment="Left" Height="200" Width="140" VerticalAlignment="Top" RadiusX="10" RadiusY="10" Fill="#304d5b">
+                <Rectangle.Effect>
+                    <DropShadowEffect Color="#10212b" Direction="270" ShadowDepth="3" BlurRadius="0"/>
+                </Rectangle.Effect>
+            </Rectangle>
+
+            <!-- Button on the Rectangle -->
+            <Button x:Name="nextGameButton" Content="Next Game" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="40" Margin="20,140,0,0" Click="nextGameButton_Click">
+                <!-- Set Background color to match Rectangle fill -->
+                <Button.Background>
+                    <SolidColorBrush Color="#1f3540"/>
+                </Button.Background>
+
+                <!-- Set Corner Radius to match Rectangle's radius -->
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Rectangle x:Name="nextGameButtonVisualizer" RadiusX="10" RadiusY="10" Fill="#1f3540" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Rectangle.Effect>
+                                    <!-- DropShadow effect to match Rectangle -->
+                                    <DropShadowEffect Color="#2a4450" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+                                </Rectangle.Effect>
+                            </Rectangle>
+
+                            <!-- Apply text properties to the ContentPresenter -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <ContentPresenter.Resources>
+                                    <!-- Styling for the text inside the button -->
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="FontWeight" Value="DemiBold"/>
+                                        <Setter Property="TextAlignment" Value="Center"/>
+                                    </Style>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+
+                            <!-- Define Visual States -->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <!-- Normal State (default state) -->
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="nextGameButtonVisualizer" Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)" To="#2a4450" Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+
+                                    <!-- Pressed State (when the button is clicked) -->
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="nextGameButtonVisualizer" Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)" To="#1c3c47" Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+
+                                    <!-- MouseOver State (when the button is hovered) -->
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetName="nextGameButtonVisualizer" Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)" To="#3d7588" Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <!-- Text Block inside Rectangle -->
+            <TextBlock x:Name="whoWonTextBox" Text="Won!" Width="50" Foreground="#f5b133" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" FontSize="20" FontWeight="DemiBold" Margin="45,0,0,0"/>
+
+            <!-- Image inside Rectangle -->
+            <Image x:Name="whoWonImage" Source="images/cross.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" Margin="45,32,0,0"/>
+        </Grid>
+
+        <!-- FIRST ROW OF 3X3 -->
+        <Rectangle x:Name="Grid00" HorizontalAlignment="Left" Height="100" Width="100" Margin="232,99,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#1f3540" MouseLeftButtonDown="OnClickGrid">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#10212b" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Image x:Name="ImageOverlay00" Visibility="Hidden" Panel.ZIndex="10"/>
+
+        <Rectangle x:Name="Grid01" HorizontalAlignment="Left" Height="100" Width="100" Margin="352,99,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#1f3540" MouseLeftButtonDown="OnClickGrid">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#10212b" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Image x:Name="ImageOverlay01" Visibility="Hidden" Panel.ZIndex="10"/>
+
+        <Rectangle x:Name="Grid02" HorizontalAlignment="Left" Height="100" Width="100" Margin="472,99,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#1f3540" MouseLeftButtonDown="OnClickGrid">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#10212b" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Image x:Name="ImageOverlay02" Visibility="Hidden" Panel.ZIndex="10"/>
+
+        <!-- SECOND ROW OF 3X3 -->
+        <Rectangle x:Name="Grid10" HorizontalAlignment="Left" Height="100" Width="100" Margin="232,219,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#1f3540" MouseLeftButtonDown="OnClickGrid">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#10212b" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Image x:Name="ImageOverlay10" Visibility="Hidden" Panel.ZIndex="10"/>
+
+        <Rectangle x:Name="Grid11" HorizontalAlignment="Left" Height="100" Width="100" Margin="352,219,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#1f3540" MouseLeftButtonDown="OnClickGrid">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#10212b" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Image x:Name="ImageOverlay11" Visibility="Hidden" Panel.ZIndex="10"/>
+
+        <Rectangle x:Name="Grid12" HorizontalAlignment="Left" Height="100" Width="100" Margin="472,219,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#1f3540" MouseLeftButtonDown="OnClickGrid">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#10212b" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Image x:Name="ImageOverlay12" Visibility="Hidden" Panel.ZIndex="10"/>
+
+        <!-- THIRD ROW OF 3X3 -->
+        <Rectangle x:Name="Grid20" HorizontalAlignment="Left" Height="100" Width="100" Margin="232,339,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#1f3540" MouseLeftButtonDown="OnClickGrid">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#10212b" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Image x:Name="ImageOverlay20" Visibility="Hidden" Panel.ZIndex="10"/>
+
+        <Rectangle x:Name="Grid21" HorizontalAlignment="Left" Height="100" Width="100" Margin="352,339,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#1f3540" MouseLeftButtonDown="OnClickGrid">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#10212b" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Image x:Name="ImageOverlay21" Visibility="Hidden" Panel.ZIndex="10"/>
+
+        <Rectangle x:Name="Grid22" HorizontalAlignment="Left" Height="100" Width="100" Margin="472,339,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#1f3540" MouseLeftButtonDown="OnClickGrid">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#10212b" Direction="270" ShadowDepth="4" BlurRadius="0"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Image x:Name="ImageOverlay22" Visibility="Hidden" Panel.ZIndex="10"/>
+
+        <!-- FOOTER INFORMATION -->
+        <Rectangle x:Name="GridCIRCLE" HorizontalAlignment="Left" Height="50" Width="100" Margin="232,459,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#31c4be"/>
+        <TextBlock Text="CIRCLES" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left" TextAlignment="Center" Margin="257,468,0,0" FontWeight="DemiBold"/>
+        <TextBlock x:Name="CircleScore" Text="0" Width="20" VerticalAlignment="Top" HorizontalAlignment="Left" TextAlignment="Center" Margin="271,484,0,0" FontWeight="UltraBold"/>
+
+        <Rectangle x:Name="GridTIES" HorizontalAlignment="Left" Height="50" Width="100" Margin="352,459,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#a8bec9"/>
+        <TextBlock Text="TIES" Width="30" VerticalAlignment="Top" HorizontalAlignment="Left" TextAlignment="Center" Margin="387,468,0,0" FontWeight="DemiBold"/>
+        <TextBlock x:Name="TiesScore" Text="0" Width="20" VerticalAlignment="Top" HorizontalAlignment="Left" TextAlignment="Center" Margin="393,484,0,0" FontWeight="UltraBold"/>
+
+        <Rectangle x:Name="GridCROSS" HorizontalAlignment="Left" Height="50" Width="100" Margin="472,459,0,0" VerticalAlignment="Top"  RadiusX="10" RadiusY="10" Fill="#f5b133"/>
+        <TextBlock Text="CROSSES" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left" TextAlignment="Center" Margin="497,468,0,0" FontWeight="DemiBold"/>
+        <TextBlock x:Name="CrossesScore" Text="0" Width="20" VerticalAlignment="Top" HorizontalAlignment="Left" TextAlignment="Center" Margin="512,484,0,0" FontWeight="UltraBold"/>
+    </Grid>
+</Window>

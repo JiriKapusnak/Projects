@@ -1,0 +1,33 @@
+.tag {
+    color: blue;
+    font-weight: bold;
+}
+
+.tlacitka {
+    text-align: center;
+}
+
+.stranka {
+    max-width: 850px;
+    max-height: 310px;
+}
+
+body {
+    display: block;
+    margin: 8px;
+}
+
+code {
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+}
+
+pre {
+    padding-left: 15px;
+    background-color: lightgray;
+    border-left: 4px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

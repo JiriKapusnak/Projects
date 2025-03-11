@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap');
+
+body {
+    background-color: black;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.main-text {
+    font-size: 70px;
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    font-weight: bold;
+    margin-top: 60%;
+    color: rgb(205, 216, 223);
+}
+
+@media screen and (min-width: 900px) {
+    .main-text {
+        font-size: 150px;
+        margin-top: 20%;
+    }
+
+    .main-text .firstline,
+    .main-text .thirdline {
+        padding-left: 150px;
+    }
+}
+
+.main-text p {
+    padding: 0;
+    margin: 0;
+}
+
+.main-text .firstline,
+.main-text .thirdline {
+    text-align: left;
+    padding-left: 60px;
+    animation: 1s slidein;
+    white-space: nowrap;
+}
+
+.thirdline {
+    font-size: 55px;
+    font-style: italic;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%
+    }
+    to {
+        margin-left: 0%
+    }
+}
+
+.main-text .secondline,
+.main-text .fourthline {
+    text-align: left;
+    padding-left: 115px;
+    animation: 2.1s slideout;
+    white-space: nowrap;
+}
+
+@keyframes slideout {
+    from {
+        margin-left: 100%
+    }
+    to {
+        margin-left: 0%
+    }
+}
+
+.fourthline {
+    font-size: 50px;
+    color: transparent;
+    -webkit-text-stroke: 2px white;
+    position: relative;
+}
+
+.fourthline::before {
+    content: "DESIGNER";
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    overflow: hidden;
+    color: white;
+    border-right: 4px solid white;
+    animation: 3s filltext forwards;
+}
+
+@keyframes filltext {
+    0% {
+        width: 0px;
+    }
+    33.33% {
+        width: 0px;
+    }
+    66.67% {
+        width: 0px;
+    }
+    100% {
+        width: 260px;
+        filter: drop-shadow(0 0 25px white);
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .main-text {
+        font-size: 150px;
+        margin-top: 10%;
+    }
+
+    .main-text .firstline,
+    .main-text .thirdline {
+        padding-left: 150px;
+    }
+
+    .main-text .secondline,
+    .main-text .fourthline {
+        padding-left: 350px;
+    }
+
+    .thirdline {
+        font-size: 120px;
+    }
+
+    .fourthline {
+        font-size: 110px;
+    }
+
+    @keyframes filltext {
+        0% {
+            width: 0px;
+        }
+        33.33% {
+            width: 0px;
+        }
+        66.67% {
+            width: 0px;
+        }
+        100% {
+            width: 580px;
+            filter: drop-shadow(0 0 25px white);
+        }
+    }
+}

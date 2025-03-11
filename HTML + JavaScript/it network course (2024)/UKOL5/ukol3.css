@@ -1,0 +1,17 @@
+.lokomotiva {
+    height: 64px;
+    padding-left: 100px;
+    margin: auto 0 auto 20px;
+    display: flex;
+    background: url('obrazky/lokomotiva.png') no-repeat;
+}
+
+nav li {
+    background: url('obrazky/vagon.png') no-repeat;
+    min-width: 75px;
+    text-align: center;
+    color: white;
+    margin-right: 5px;
+    padding-top: 23px;
+    list-style-type: none;
+}

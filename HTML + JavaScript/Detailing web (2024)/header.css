@@ -1,0 +1,41 @@
+.header {
+    display: flex;
+    height: 70px;
+    width: 100%;
+    top: 0;
+    position: fixed;
+    background-color: rgba(0,0,0,0.75);
+    color: white;
+    z-index: 1000;
+}
+
+.header a {
+    text-decoration: none
+}
+
+.header a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.middle {
+    display: flex;
+    flex: auto;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Kanit', sans-serif;
+    line-height: 1.35em;
+    letter-spacing: 0.5em;
+}
+
+.middle h1 {
+    font-size: 24px;
+    margin: 0;
+    opacity: 1;
+}
+
+.middle p {
+    margin: 0;
+    color: rgb(134, 87, 0);
+}
